@@ -1,3 +1,4 @@
+# Кол-во максимальных элементов в массиве.  
 def GetMaxCount(Arr, N):
   Max = Arr[0]
   Count = 1
