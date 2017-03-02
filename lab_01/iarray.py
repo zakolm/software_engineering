@@ -7,6 +7,7 @@ def GetMaxCount(Arr, N):
   while (I < N):
     if (Arr[I] > Max):
       Max = Arr[I]
+      Count = 1
     else:
       if (Max == Arr[I]):
         Count += 1;
