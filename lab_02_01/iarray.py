@@ -1,3 +1,4 @@
+# Удаления отрицательных элементов из массива
 def form_array(arr, n):
   new_arr = arr
   
@@ -11,7 +12,7 @@ def form_array(arr, n):
     
   return new_arr, n
 
-
+# Вывода массива
 def print_array(arr, n):
   i = 0
   while (i < n):

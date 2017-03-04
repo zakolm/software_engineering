@@ -1,5 +1,5 @@
 from iarray import *
-
+# Тестирование первоначальное.
 def test_1():
   arr = list()
   
@@ -11,18 +11,18 @@ def test_1():
   
   return arr, 5
 
-#
+# Тестирование студента.
 def test_2():
   arr = list()
   
   arr.append(-1)
-  arr.append(-1)
+  arr.append(-3)
   arr.append(3)
   arr.append(5)
   arr.append(-3)
- # arr.append(-6)
+  arr.append(-6)
   
-  return arr, 5
+  return arr, 6
 
 def main():
   arr, n = test_1()
@@ -45,6 +45,7 @@ def main():
 
   print("[TEST2]Result")
   print_array(new_arr, new_n)
+
 
 
 if __name__ == '__main__':
