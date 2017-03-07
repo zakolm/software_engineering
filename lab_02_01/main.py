@@ -47,6 +47,5 @@ def main():
   print_array(new_arr, new_n)
 
 
-
 if __name__ == '__main__':
   main()

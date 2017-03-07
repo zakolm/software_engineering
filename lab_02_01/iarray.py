@@ -7,7 +7,7 @@ def form_array(arr, n):
     if (new_arr[i] < 0):
       new_arr.pop(i)
       n -= 1
-    
+      i -= 1
     i += 1
     
   return new_arr, n
