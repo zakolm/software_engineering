@@ -1,4 +1,5 @@
 from iarray import *
+#
 # Тестирование первоначальное.
 def test_1():
   arr = list()
