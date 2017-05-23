@@ -1,29 +1,31 @@
 def main():
-    input_name = input("Введите имя файла: ")
-    #data, count_all, count_lines
-    #output_name = input("Введите имя файла: ")
-    count()
+    input_name = input("Введите имя входного файла: ")
+    output_name = input("Введите имя выходного файла: ")
+    count(input_name, output_name)
     
-def count():
+def write(output_name,data,line,all_count):
+    new_file = open(output_name, 'w')
+    for i in range(line):
+        string = str(100*data[i]/all_count)
+        new_file.write(string+'\n')
+    new_file.close
+def count(input_name, output_name):
     data = [0]*100
     all_count = 0
-    for i in open("test.txt", 'r'):
+    line = -1
+    for i in open(input_name, 'r'):
+        line += 1
         flag = True
         count_n = 1
-        print(i)
         for j in range(len(i)):
             if i[j] == ' ' and flag:
                 count_n += 1
                 flag = False
-            if 'a' <= i[j] <= 'z' or 'а' <= i[j] <= 'я' or 'A' <= i[j] <= 'Z' or 'А' <= i[j] <= 'Я':
+            if (('a' <= i[j] <= 'z' or 'а' <= i[j] <= 'я') or
+                ('A' <= i[j] <= 'Z' or 'А' <= i[j] <= 'Я')):
                    flag = True
-    data[i] = count_n
-    all_count += count_n
-    #input_array(all_count,data, i, count_n)
-    #print(all_count,data, i, count_n)
-    #print(count_n)
-#def input_array(all_count,data, i, znach):
-#    data[i] = znach
-#    all_count += znach
+        data[line] = count_n
+        all_count += count_n
+    write(output_name, data,line, all_count)
 if __name__ == '__main__':
     main()
