@@ -125,7 +125,6 @@ def test_TransformUnevenNum():
         print('test_TransformUnevenNum: OK')
 
 def main():
-    test_ReadString()
     test_SumNum()
     test_TypeSum()
     test_TransformEvenNum()

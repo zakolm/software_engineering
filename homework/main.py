@@ -7,12 +7,13 @@
 
 import os
 
+MAX_STRING = 100
 OK = 0 ## All ok
 NOT_OK = -1 ## Something not ok
 FILE_EMPTY = -2 ## File is empty
 EOF = -3 ## End of file
 FILE_NE = -4 ## File is not exist
-STRING_COR = -5 ## String is correct
+STRING_COR = 0 ## String is correct
 STRING_INCOR = -6 ## String isn't correct
 
 ## Вход в программу
@@ -30,51 +31,59 @@ def main():
 
     ## Open result file for writing
     f_out = open('f_out.txt', 'w')
-
-    ## Check for existence of source file
-    if os.path.exists('f_inp.txt'): 
-
-        ## Open source file for reading
-        f_inp = open('f_inp.txt', 'r')
-        i = 0
-
-        ## Until the end of the file
-        while True:
-            x, rc_t = ReadString(f_inp, i)
-
-            if rc_t == FILE_EMPTY:
-                print('File is empty')
-                f_out.write('File is empty\n')
-                rc = FILE_EMPTY
-                break
-            
-            if rc_t == EOF:
-                print('Success!')
-                break
-
-            if rc_t == STRING_COR:
-                x_s = SumNum(x)
-                x_t = TypeSum(x_s)
-                if x_t == True: # Num is even
-                    x_n = TransformEvenNum(x)
-                else: # Num is uneven
-                    x_n = TransformUnevenNum(x)                    
-                f_out.write('{:d}\n'.format(x_n))
-
-            if rc_t == STRING_INCOR:
-                f_out.write('incorrect data\n')
-
-            i += 1
-
-        f_inp.close()
-    else:
-        print('File does not exist')
-        f_out.write('File does not exist\n')
-        rc = FILE_NE
-        
+    rc, array, len_array = Work_My_Program(f_out)
+    if (not rc):
+        WorkArray(f_out, array, len_array)
     f_out.close()
     
     return rc
+
+def Work_My_Program(FILE):
+    rc = OK
+    ## Check for existence of source file
+    if os.path.exists('in_2.txt'):
+        ## Open source file for reading
+        f_inp = open('in_2.txt', 'r')
+        i = 0; array = [[0 for i in range(MAX_STRING)] for i in range(MAX_STRING)]
+        rc_t = OK
+        ## Until the end of the file
+        while (i <= MAX_STRING):
+            array[i][0],array[i][1] = ReadString(f_inp, i)
+            #print(array[i][0], array[i][1], i, EOF, FILE_EMPTY)
+            if (array[i][1] == FILE_EMPTY or array[i][1] == EOF):
+                break
+            i += 1
+        f_inp.close()
+    else:
+        print('File does not exist\n')
+        FILE.write('File does not exist\n')
+        rc = FILE_NE
+        
+    return rc, array, i
+def WorkArray(FILE, array, len_array):
+    rc = OK
+    for i in range(len_array):
+        if (not array[i][1]):
+            x_s = SumNum(array[i][0])
+            x_t = TypeSum(x_s)
+            if x_t == True: # Num is even
+                x_n = TransformEvenNum(array[i][0])
+            else: # Num is uneven
+                x_n = TransformUnevenNum(array[i][0])                    
+            FILE.write('{:d}\n'.format(x_n))
+        else:
+            if array[i][1] == STRING_INCOR:
+                FILE.write('incorrect data\n')
+            elif array[i][1] == FILE_EMPTY:
+                print('File is empty')
+                FILE.write('File is empty\n')
+                rc = FILE_EMPTY
+            else:
+                print('Success!')
+    return rc
+            
+
+#def CheckString  ():         
 
 ## Преобразовываем строку в файл
 #
