@@ -41,9 +41,9 @@ def main():
 def Work_My_Program(FILE):
     rc = OK
     ## Check for existence of source file
-    if os.path.exists('in_2.txt'):
+    if os.path.exists('f_in.txt'):
         ## Open source file for reading
-        f_inp = open('in_2.txt', 'r')
+        f_inp = open('f_in.txt', 'r')
         i = 0; array = [[0 for i in range(MAX_STRING)] for i in range(MAX_STRING)]
         rc_t = OK
         ## Until the end of the file
